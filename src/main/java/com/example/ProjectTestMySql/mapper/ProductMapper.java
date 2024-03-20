@@ -1,6 +1,6 @@
 package com.example.ProjectTestMySql.mapper;
 
-import com.example.ProjectTestMySql.entity.Product;
+import com.example.ProjectTestMySql.model.entity.Product;
 import com.example.ProjectTestMySql.model.dto.ProductPayload;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

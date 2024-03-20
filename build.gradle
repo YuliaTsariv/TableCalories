@@ -33,7 +33,7 @@ dependencies {
 	implementation "org.mapstruct:mapstruct:1.5.5.Final"
 	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.5.Final"
 	testAnnotationProcessor "org.mapstruct:mapstruct-processor:1.5.5.Final"
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+	implementation "org.liquibase:liquibase-core:4.22.0"
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.2.3")
 	implementation "org.javers:javers-spring-boot-starter-sql:7.3.6"
 	implementation "com.mysql:mysql-connector-j:8.0.32"

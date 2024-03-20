@@ -1,4 +1,4 @@
-package com.example.ProjectTestMySql.entity;
+package com.example.ProjectTestMySql.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@Table(name = "nutrion_info")
+@Table(name = "nutrition_info")
 public class NutritionInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,4 @@ public class NutritionInfo {
     private Float proteins;
     private Float fats;
     private Float carbohydrates;
-
-    // Getters and setters
 }

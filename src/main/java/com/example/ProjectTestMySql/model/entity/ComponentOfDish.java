@@ -1,6 +1,5 @@
-package com.example.ProjectTestMySql.model;
+package com.example.ProjectTestMySql.model.entity;
 
-import com.example.ProjectTestMySql.entity.Product;
 import jakarta.persistence.*;
 import lombok.*;
 

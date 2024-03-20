@@ -1,4 +1,4 @@
-package com.example.ProjectTestMySql.model;
+package com.example.ProjectTestMySql.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
