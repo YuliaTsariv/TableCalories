@@ -16,21 +16,39 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
     public static final String API = "/api/table/calories";
     public static final String ADD_MEAL = "/add/meal";
-    public static final String SAVE_PRODUCT = "/save/product";
+    public static final String PRODUCT = "/product";
+
     private final ProductService productService;
 
     @CrossOrigin(originPatterns = "*")
-    @PostMapping(ADD_MEAL)
-    public ResponseEntity<String> addMeal(@RequestBody AddMealRequest request) {
-        log.info("Handle adding meal " + request);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @CrossOrigin(originPatterns = "*")
-    @PostMapping(SAVE_PRODUCT)
+    @PostMapping(PRODUCT)
     public ResponseEntity<ProductPayload> saveProduct(@RequestBody ProductPayload request) {
         log.info("Handle adding meal " + request);
 
         return ResponseEntity.ok(productService.saveProduct(request));
+    }
+
+    @CrossOrigin(originPatterns = "*")
+    @GetMapping(PRODUCT)
+    public ResponseEntity<ProductPayload> getProductDetails(@RequestParam Long id) {
+        log.info("Handle getting info about product with id: " + id);
+
+        return ResponseEntity.ok(productService.getProduct(id));
+    }
+
+    @CrossOrigin(originPatterns = "*")
+    @PatchMapping(PRODUCT)
+    public ResponseEntity<Void> updateProduct(@RequestBody ProductPayload request) {
+        log.info("Handle updating product: " + request);
+        productService.updateProduct(request);
+        return ResponseEntity.noContent().build();
+    }
+
+    @CrossOrigin(originPatterns = "*")
+    @DeleteMapping(PRODUCT)
+    public ResponseEntity<Void> deleteProduct(@RequestParam Long id) {
+        log.info("Handle deleting product with id: " + id);
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
     }
 }

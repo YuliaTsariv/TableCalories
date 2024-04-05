@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,5 +24,20 @@ public class ProductService {
         var product = productMapper.toProduct(productPayload);
         productRepository.save(product);
         return productMapper.toProductPayload(product);
+    }
+
+    public ProductPayload getProduct(Long id) {
+        var product = productRepository.findById(id).orElseThrow();
+        return productMapper.toProductPayload(product);
+    }
+
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
+    }
+
+@Transactional
+    public void updateProduct(ProductPayload productPayload) {
+        var product = productRepository.findById(productPayload.getId()).orElseThrow();
+        productMapper.updateProductConfig(productPayload, product);
     }
 }
