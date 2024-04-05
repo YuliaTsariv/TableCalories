@@ -4,7 +4,6 @@ import com.example.ProjectTestMySql.mapper.OrderMapper;
 import com.example.ProjectTestMySql.model.dto.OrderPayload;
 import com.example.ProjectTestMySql.model.dto.SearchOrderRequest;
 import com.example.ProjectTestMySql.model.dto.SearchOrderResult;
-import com.example.ProjectTestMySql.model.entity.Order;
 import com.example.ProjectTestMySql.repository.OrderRepository;
 import com.example.ProjectTestMySql.repository.ProductRepository;
 import lombok.AccessLevel;
@@ -34,11 +33,11 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+    @Transactional
     public List<SearchOrderResult> searchOrder(SearchOrderRequest request) {
         var dateTime = request.getSearchDateTime();
         var orders = orderRepository.findAllByUserIdAndDateTimeBetween(request.getUserId(),dateTime, dateTime.plusDays(1));
-        var searchResult = orders.stream().map(order->orderMapper.toSearchOrderResult(order, 3L)).toList();
-        return searchResult;
+        return orders.stream().map(order->orderMapper.toSearchOrderResult(order, 3L)).toList();
     }
 
     @Transactional
@@ -48,7 +47,7 @@ public class OrderService {
         OrderMapper.INSTANCE.updateOrderConfig(orderPayload, order);
     }
 
-
+    @Transactional
     public void deleteOrder(Long id) {
         orderRepository.deleteById(id);
     }

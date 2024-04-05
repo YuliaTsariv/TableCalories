@@ -26,16 +26,18 @@ public class ProductService {
         return productMapper.toProductPayload(product);
     }
 
+    @Transactional
     public ProductPayload getProduct(Long id) {
         var product = productRepository.findById(id).orElseThrow();
         return productMapper.toProductPayload(product);
     }
 
+    @Transactional
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 
-@Transactional
+    @Transactional
     public void updateProduct(ProductPayload productPayload) {
         var product = productRepository.findById(productPayload.getId()).orElseThrow();
         productMapper.updateProductConfig(productPayload, product);
